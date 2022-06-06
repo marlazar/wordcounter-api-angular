@@ -5,12 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { WordcounterApiService } from './wordcounter-api.service';
-import { InstanceComponent } from './instance/instance.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InstanceComponent
   ],
   imports: [
     BrowserModule,

@@ -14,23 +14,55 @@
 
 <body>
   <div ng-app="myApp" ng-controller="myCtrl" class="container">
-    <h1>Word Counter</h1>
-    <textarea ng-model="text" (keydown)="wordCounter()" #text id="wmd-input" name="post-text"
-      class="wmd-input s-input bar0 js-post-body-field processed" data-post-type-id="2" cols="92" rows="15"
+    <h3 style="text-align:center; font-weight: bold;">Word Counter</h3>
+    <h6 style="text-align:justify">Hello and welcome to the Word Counter. You have three ways to count word in the text.
+      First one is by inputting the text manually, second is by selecting the file
+      from you local machine, and the third way is by using the reading instances already added to the database.
+    </h6>
+    <h6>1. Add the text manually:</h6>
+    <textarea ng-model="text" [(ngModel)]="area" (keydown)="wordCounter()" #text id="wmd-input" name="post-text"
+      class="wmd-input s-input bar0 js-post-body-field processed" data-post-type-id="2" cols="92" rows="10"
       tabindex="101" data-min-length="" oncopy="return false;" onpaste="return false;" oncut="return false;"
       placeholder="Enter your text here..."></textarea>
     <div>
-      <label for="myfile">Select a file:</label>
-      <input type="file" onchange="readText(event)" id="myfile" name="myfile"><br> 
+      <h6>2. Select text from a file:</h6>
+      <input type="file" (change)="onFileSelected($event)"><br>
     </div>
     <br>
     <div>
-      <button onclick="readDatabase(event)" id="myfile" name="myfile">Add text from database</button><br> 
+      <h6>3. Read the text from a database table:</h6>
+      <table class="table table-striped" style="border: 1px solid black; border-collapse:collapse;">
+        <thead>
+          <th>Id</th>
+          <th>Instance Text</th>
+          <th>Load From Text</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of instancesList$|async">
+            <td>{{item.instanceId}}</td>
+            <td>{{item.instanceText}}</td>
+            <td><button (click)="loadFromDatabase(item.instanceText)">Load</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <br>
+    <div>
+      <h5>Press the button below to count the words in the text:</h5>
+      <div class="center">
+        <button (click)="countWords()" type="button" class="btn btn-secondary btn-lg">Count words</button>
+      </div>
+    </div>
+    <br>
+    <!-- <div class="output row">
+      <div>Words Frontend:
+        <span id="wordCount">{{ words }}</span>
+      </div>
+    </div> -->
     <div class="output row">
       <div>Words:
-        <span id="wordCount">{{ words }}</span>
+        <span id="wordCount">{{backendWords}}</span>
+        <span id="wordCount">{{fileText}}</span>
       </div>
     </div>
   </div>
