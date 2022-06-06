@@ -1,3 +1,3 @@
 export interface Countwords {
-    InstanceText:string;
+    InstanceText:string|undefined;
 }

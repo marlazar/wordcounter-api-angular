@@ -16,7 +16,7 @@ export class WordcounterApiService {
     return this.http.get<any>(this.wordCounterAPIUrl + '/instances');
   }
 
-  countWords(text:string):Observable<any>{
+  countWords(text:string|undefined):Observable<any>{
     let words : Countwords={InstanceText : text}
     return this.http.post<any>(this.wordCounterAPIUrl + '/instances/count', words);
   }

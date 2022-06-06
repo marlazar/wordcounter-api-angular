@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'angular-wordcounter-api';
   backendWords = '';
   wordCount: any;
-  area = '';
+  area : string | undefined = '';
 
   instancesList$!: Observable<any[]>;
 
@@ -35,7 +35,6 @@ export class AppComponent {
     })
   }
 
-  fileText:any;
   onFileSelected(eve: { target: any; }) {
     let target = eve.target;
     let selectedFile = target.files[0];
@@ -47,7 +46,7 @@ export class AppComponent {
 
     fileReader.onload=()=>{
       let result = fileReader.result;
-      this.fileText = result;
+      this.area = result?.toString();
     }
   }
 
