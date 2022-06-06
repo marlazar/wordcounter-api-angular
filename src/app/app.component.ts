@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'wordcounter-api-angular';
+  title = 'angular-wordcounter-api';
+
+  wordCount: any;
+
+  @ViewChild("text") text: ElementRef | undefined;
+  words = 0;
+  wordCounter() {
+    this.wordCount = this.text ? this.text.nativeElement.value.split(/\s+/) : 0;
+    this.words = this.wordCount ? this.wordCount.length : 0;
+  }
 }

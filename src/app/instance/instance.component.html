@@ -1,0 +1,19 @@
+<table class="table table-striped" style="border: 1px solid black; border-collapse:collapse">
+    <br>
+    <thead>
+      <th>Id</th>
+      <th>Instance Text</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of instancesList$|async">
+        <td>{{item.instanceId}}</td>
+        <td>{{item.instanceText}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="alert alert-success" role="alert" id="add-success-alert">
+    Instance successfully added!
+  </div>
+  
+  
